@@ -7,12 +7,11 @@ import java.math.BigDecimal;
 @Getter
 @Builder
 @ToString
-@NoArgsConstructor
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class PaymentsApproveRequest {
 
-    private BigDecimal amount;
-    private String ediDate;
-    private String signData;
-    private String returnCharSet;
+    private final BigDecimal amount;
+    private final String ediDate;
+    private final String signData;
+    private final String returnCharSet;
 }

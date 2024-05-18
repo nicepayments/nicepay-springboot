@@ -6,6 +6,6 @@ import kr.co.nicepay.untact.receipt.dto.ReceiptRetrieveRequest;
 import kr.co.nicepay.untact.receipt.dto.ReceiptRetrieveResponse;
 import org.springframework.data.util.Pair;
 
-public interface ReceiptQuery {
+public interface ReceiptQueryOutboundPort {
     Pair<Integer, ReceiptRetrieveResponse> retrieve(Id<String> tid, ReceiptRetrieveRequest receiptSearchReq);
 }

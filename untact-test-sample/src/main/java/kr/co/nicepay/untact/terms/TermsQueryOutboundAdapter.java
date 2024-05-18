@@ -19,7 +19,7 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class TermsQueryRestClient implements TermsQuery {
+public class TermsQueryOutboundAdapter implements TermsQueryOutboundPort {
 
     private final DomainUrlProperties domainUrlProperties;
     private final TermsUrlProperties termsUrlProperties;
@@ -35,7 +35,7 @@ public class TermsQueryRestClient implements TermsQuery {
         ResponseEntity<TermsResponse> termsResponse = restTemplateHelper.getParamsRestTemplate(
                 domainUrlProperties.getApi() + termsUrlProperties.getTerms(),
                 merchantProperties.getToken(),
-                termsRequest.toMap(),
+                termsRequest.toMultiValueMap(),
                 TermsResponse.class
         );
 
@@ -59,7 +59,7 @@ public class TermsQueryRestClient implements TermsQuery {
         ResponseEntity<CardEventResponse> cardEventResponse = restTemplateHelper.getParamsRestTemplate(
                 domainUrlProperties.getApi() + termsUrlProperties.getCardEvent(),
                 merchantProperties.getToken(),
-                cardEventRequest.toMap(),
+                cardEventRequest.toMultiValueMap(),
                 CardEventResponse.class
         );
 
@@ -83,7 +83,7 @@ public class TermsQueryRestClient implements TermsQuery {
         ResponseEntity<CardInterestFreeResponse> cardInterestFreeResponse = restTemplateHelper.getParamsRestTemplate(
                 domainUrlProperties.getApi() + termsUrlProperties.getCardInterestFree(),
                 merchantProperties.getToken(),
-                cardInterestFeeRequest.toMap(),
+                cardInterestFeeRequest.toMultiValueMap(),
                 CardInterestFreeResponse.class
         );
 

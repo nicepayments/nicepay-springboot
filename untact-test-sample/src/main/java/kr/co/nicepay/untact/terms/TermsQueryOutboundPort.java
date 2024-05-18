@@ -9,7 +9,7 @@ import kr.co.nicepay.untact.terms.dto.term.TermsRequest;
 import kr.co.nicepay.untact.terms.dto.term.TermsResponse;
 import org.springframework.data.util.Pair;
 
-public interface TermsQuery {
+public interface TermsQueryOutboundPort {
     Pair<Integer, TermsResponse> terms(TermsRequest termsRequest);
 
     Pair<Integer, CardEventResponse> cardEvent(CardEventRequest cardEventRequest);

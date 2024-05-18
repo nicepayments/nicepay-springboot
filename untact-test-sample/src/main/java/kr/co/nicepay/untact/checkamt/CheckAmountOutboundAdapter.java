@@ -21,7 +21,7 @@ import java.util.Map;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class CheckAmountQueryRestClient implements CheckAmountQuery {
+public class CheckAmountOutboundAdapter implements CheckAmountOutboundPort {
 
     private final DomainUrlProperties domainUrlProperties;
     private final CheckAmountUrlProperties checkAmountUrlProperties;

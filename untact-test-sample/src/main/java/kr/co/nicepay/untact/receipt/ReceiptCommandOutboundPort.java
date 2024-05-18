@@ -8,7 +8,7 @@ import kr.co.nicepay.untact.receipt.dto.ReceiptCreateRequest;
 import kr.co.nicepay.untact.receipt.dto.ReceiptCreateResponse;
 import org.springframework.data.util.Pair;
 
-public interface ReceiptCommand {
+public interface ReceiptCommandOutboundPort {
 
     Pair<Integer, ReceiptCreateResponse> issue(ReceiptCreateRequest receiptCreateRequest);
 

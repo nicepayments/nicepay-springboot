@@ -26,14 +26,14 @@ import static org.junit.jupiter.api.TestInstance.Lifecycle.PER_CLASS;
 @DisplayName("현금영수증 시나리오 테스트")
 @TestInstance(PER_CLASS)
 @TestMethodOrder(value = MethodOrderer.OrderAnnotation.class)
-class ReceiptCommandRestClientTest extends CardInfTest {
+class ReceiptCommandOutboundAdapterTest extends CardInfTest {
 
-    private static final Logger log = LoggerFactory.getLogger(ReceiptCommandRestClientTest.class);
+    private static final Logger log = LoggerFactory.getLogger(ReceiptCommandOutboundAdapterTest.class);
     private static Id<String> issueReceiptTid;
     @Autowired
-    private ReceiptCommandRestClient receiptCommandRestClient;
+    private ReceiptCommandOutboundAdapter receiptCommandRestClient;
     @Autowired
-    private ReceiptQueryRestClient receiptQueryRestClient;
+    private ReceiptQueryOutboundAdapter receiptQueryRestClient;
 
     @Order(1)
     @DisplayName("현금영수증 발급 테스트")

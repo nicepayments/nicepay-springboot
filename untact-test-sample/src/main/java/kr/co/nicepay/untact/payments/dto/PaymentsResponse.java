@@ -53,8 +53,4 @@ public class PaymentsResponse {
     private VBank vbank;
     private CashReceipts cashReceipts;
     private List<Cancel> cancels;
-
-    public void setBid(Id<String> bid) {
-        this.bid = bid;
-    }
 }

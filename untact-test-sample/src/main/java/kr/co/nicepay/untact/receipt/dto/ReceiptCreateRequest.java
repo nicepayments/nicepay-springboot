@@ -2,49 +2,29 @@ package kr.co.nicepay.untact.receipt.dto;
 
 
 import kr.co.nicepay.untact.common.types.ReceiptType;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import java.math.BigDecimal;
 
 @Getter
+@Builder
 @ToString
-@NoArgsConstructor
+@RequiredArgsConstructor
 public class ReceiptCreateRequest {
     // Mandatory
-    private String orderId;
-    private BigDecimal amount;
-    private String goodsName;
-    private String receiptType;
-    private String receiptNo;
-    private int supplyAmt;
-    private int goodsVat;
-    private int taxFreeAmt;
-    private int serviceAmt;
+    private final String orderId;
+    private final BigDecimal amount;
+    private final String goodsName;
+    private final ReceiptType receiptType;
+    private final String receiptNo;
+    private final int supplyAmt;
+    private final int goodsVat;
+    private final int taxFreeAmt;
+    private final int serviceAmt;
     // Optional
-    private String buyerName;
-    private String buyerTel;
-    private String buyerEmail;
-    private String signData;
-    private String returnCharSet;
-
-    @Builder
-    public ReceiptCreateRequest(String orderId, BigDecimal amount, String goodsName, ReceiptType receiptType, String receiptNo, int supplyAmt, int goodsVat, int taxFreeAmt, int serviceAmt, String buyerName, String buyerTel, String buyerEmail, String signData, String returnCharSet) {
-        this.orderId = orderId;
-        this.amount = amount;
-        this.goodsName = goodsName;
-        this.receiptType = receiptType.getTitle();
-        this.receiptNo = receiptNo;
-        this.supplyAmt = supplyAmt;
-        this.goodsVat = goodsVat;
-        this.taxFreeAmt = taxFreeAmt;
-        this.serviceAmt = serviceAmt;
-        this.buyerName = buyerName;
-        this.buyerTel = buyerTel;
-        this.buyerEmail = buyerEmail;
-        this.signData = signData;
-        this.returnCharSet = returnCharSet;
-    }
+    private final String buyerName;
+    private final String buyerTel;
+    private final String buyerEmail;
+    private final String signData;
+    private final String returnCharSet;
 }

@@ -15,16 +15,16 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatNoException
 
 @DisplayName("[AccessTokenCommandClient] - 토큰 발급")
 @SpringBootTest
-class AccessTokenCommandRestClientTest {
+class AccessTokenCommandOutboundAdapterTest {
 
     @Autowired
-    private AccessTokenCommandRestClient accessTokenCommandRestClient;
+    private AccessTokenCommandOutboundAdapter accessTokenCommandOutboundAdapter;
 
     @DisplayName("bearer 토큰발급 테스트")
     @Test
     void issueAccessTokenTest() {
         // when
-        Pair<Integer, AccessTokenResponse> issueAccessTokenRes = accessTokenCommandRestClient.issueAccessToken();
+        Pair<Integer, AccessTokenResponse> issueAccessTokenRes = accessTokenCommandOutboundAdapter.issueAccessToken();
 
         // then
         assertThat(issueAccessTokenRes.getFirst()).isEqualTo(200);

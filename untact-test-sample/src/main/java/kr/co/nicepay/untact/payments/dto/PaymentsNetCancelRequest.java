@@ -6,12 +6,11 @@ import lombok.*;
 @Getter
 @Builder
 @ToString
-@NoArgsConstructor
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class PaymentsNetCancelRequest {
-    private Id<String> orderId;
-    private String mallReserved;
-    private String ediDate;
-    private String signData;
-    private String returnCharSet;
+    private final Id<String> orderId;
+    private final String mallReserved;
+    private final String ediDate;
+    private final String signData;
+    private final String returnCharSet;
 }

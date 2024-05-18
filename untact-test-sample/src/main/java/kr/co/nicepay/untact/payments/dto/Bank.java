@@ -1,15 +1,15 @@
 package kr.co.nicepay.untact.payments.dto;
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 @Getter
 @ToString
-@RequiredArgsConstructor
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Bank {
 
-    private final String bankCode;
-    private final String bankName;
+    private String bankCode;
+    private String bankName;
 
 }

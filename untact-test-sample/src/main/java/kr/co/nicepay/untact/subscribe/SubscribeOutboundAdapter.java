@@ -24,7 +24,7 @@ import java.util.function.Supplier;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class SubscribeCommandClient implements SubscribeOutboundPort {
+public class SubscribeOutboundAdapter implements SubscribeOutboundPort {
 
     private final DomainUrlProperties domainUrlProperties;
     // 정기결제 설정 정보
@@ -96,9 +96,6 @@ public class SubscribeCommandClient implements SubscribeOutboundPort {
         } catch (ResourceAccessException e) {
             log.error("Subscribe Rest OutBound Resource Access Exception: {}", e.getMessage());
             throw new ResourceAccessException("Subscribe Rest OutBound Resource Access Exception");
-        } catch (RuntimeException e) {
-            log.error("Subscribe Rest OutBound Runtime Exception: {}", e.getMessage());
-            throw new RuntimeException("Subscribe Rest OutBound Runtime Exception");
         } catch (Exception e) {
             log.error("Subscribe Rest OutBound Exception: {}", e.getMessage());
             throw new RuntimeException("Subscribe Rest OutBound Exception");

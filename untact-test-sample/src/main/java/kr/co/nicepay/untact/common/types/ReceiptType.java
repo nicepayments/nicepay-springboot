@@ -1,9 +1,13 @@
 package kr.co.nicepay.untact.common.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 import org.apache.commons.lang3.StringUtils;
+
+import java.util.Arrays;
 
 @Getter
 @ToString
@@ -17,4 +21,17 @@ public enum ReceiptType {
     private final String title;
     private final String type;
     private final String inputDesc;
+
+    @JsonCreator
+    public static ReceiptType of(String value) {
+        return Arrays.stream(values())
+          .filter(receiptType -> receiptType.getTitle().equals(value))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("Invalid Receipt Type " + value));
+    }
+
+    @JsonValue
+    public String getTitle() {
+        return title;
+    }
 }

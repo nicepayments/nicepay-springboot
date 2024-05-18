@@ -6,9 +6,8 @@ import lombok.*;
 @Getter
 @ToString
 @Builder
-@AllArgsConstructor
 @NoArgsConstructor
-@JsonIgnoreProperties(ignoreUnknown = true)
+@AllArgsConstructor
 public class CashReceipts {
     private String receiptTid;
     private String orgTid;

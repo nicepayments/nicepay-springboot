@@ -1,41 +1,31 @@
 package kr.co.nicepay.untact.terms.dto.interestfree;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
+import kr.co.nicepay.untact.common.utils.OptionalMultiValue;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-
-import java.lang.reflect.Field;
-import java.util.HashMap;
-import java.util.Map;
+import lombok.RequiredArgsConstructor;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 
 @Getter
 @Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class CardInterestFeeRequest {
-    @NotNull
-    private boolean useAuth;
-    @NotNull
-    private String ediDate;
-    @JsonInclude(JsonInclude.Include.NON_NULL)
-    private String mid;
-    @JsonInclude(JsonInclude.Include.NON_NULL)
-    private String signData;
-    @JsonInclude(JsonInclude.Include.NON_NULL)
-    private String returnCharSet;
+  private final boolean useAuth;
+  private final String ediDate;
+  private final String mid;
+  private final String signData;
+  private final String returnCharSet;
 
-    public Map<String, Object> toMap() {
-        Map<String, Object> map = new HashMap<>();
-        for (Field field : this.getClass().getDeclaredFields()) {
-            try {
-                map.put(field.getName(), field.get(this));
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            }
-        }
-        return map;
-    }
+  public MultiValueMap<String, Object> toMultiValueMap() {
+    MultiValueMap<String, Object> map = new LinkedMultiValueMap<>();
+
+    OptionalMultiValue.addIfNotNull(map, "useAuth", useAuth);
+    OptionalMultiValue.addIfNotNull(map, "ediDate", ediDate);
+    OptionalMultiValue.addIfNotNull(map, "mid", mid);
+    OptionalMultiValue.addIfNotNull(map, "signData", signData);
+    OptionalMultiValue.addIfNotNull(map, "returnCharSet", returnCharSet);
+
+    return map;
+  }
 }

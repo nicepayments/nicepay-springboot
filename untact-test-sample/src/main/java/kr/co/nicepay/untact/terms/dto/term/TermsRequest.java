@@ -1,42 +1,28 @@
 package kr.co.nicepay.untact.terms.dto.term;
 
 import kr.co.nicepay.untact.common.types.TermsType;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import kr.co.nicepay.untact.common.utils.OptionalMultiValue;
+import lombok.*;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 
-import java.lang.reflect.Field;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Optional;
 
 @Getter
 @Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class TermsRequest {
 
-    private TermsType termsType;
+  private final TermsType termsType;
+  private final String returnCharSet;
 
-    private String returnCharSet;
+  public MultiValueMap<String, Object> toMultiValueMap() {
+    MultiValueMap<String, Object> map = new LinkedMultiValueMap<>();
 
-    public Map<String, Object> toMap() {
-        Map<String, Object> map = new HashMap<>();
-        for (Field field : getClass().getDeclaredFields()) {
-            try {
-                field.setAccessible(true);
-                Object value = field.get(this);
-                if (value != null) {
-                    if (value instanceof TermsType) {
-                        map.put(field.getName(), ((TermsType) value).getCode());
-                    } else {
-                        map.put(field.getName(), value);
-                    }
-                }
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            }
-        }
-        return map;
-    }
+    OptionalMultiValue.processAndAdd(
+      map, Optional.ofNullable(termsType), "termsType", (m, key, value) -> m.add(key, value.getCode()));
+    OptionalMultiValue.addIfNotNull(map, "returnCharSet", returnCharSet);
+
+    return map;
+  }
 }

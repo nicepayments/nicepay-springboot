@@ -22,7 +22,7 @@ import java.util.Map;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class PaymentsCommandRestClient implements PaymentsOutboundCommandPort {
+public class PaymentsCommandOutboundAdapter implements PaymentsOutboundCommandPort {
 
     private final DomainUrlProperties domainUrlProperties;
     private final PaymentUrlProperties paymentUrlProperties;

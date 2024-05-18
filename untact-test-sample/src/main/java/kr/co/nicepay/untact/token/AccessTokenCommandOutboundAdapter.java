@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class AccessTokenCommandRestClient {
+public class AccessTokenCommandOutboundAdapter {
 
     private final DomainUrlProperties domainUrlProperties;
     private final AccessTokenUrlProperties accessTokenUrlProperties;

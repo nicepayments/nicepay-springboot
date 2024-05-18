@@ -20,7 +20,7 @@ import java.util.Map;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class ReceiptQueryRestClient implements ReceiptQuery {
+public class ReceiptQueryOutboundAdapter implements ReceiptQueryOutboundPort {
 
     private final DomainUrlProperties domainUrlProperties;
     private final ReceiptUrlProperties receiptUrlProperties;

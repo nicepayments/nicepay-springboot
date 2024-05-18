@@ -7,11 +7,9 @@ import lombok.*;
 @Getter
 @Builder
 @ToString
-@NoArgsConstructor
-@AllArgsConstructor
-@JsonInclude(JsonInclude.Include.NON_NULL)
+@RequiredArgsConstructor
 public class ReceiptRetrieveRequest {
-    private String ediDate;
-    private String signData;
-    private String returnCharSet;
+    private final String ediDate;
+    private final String signData;
+    private final String returnCharSet;
 }

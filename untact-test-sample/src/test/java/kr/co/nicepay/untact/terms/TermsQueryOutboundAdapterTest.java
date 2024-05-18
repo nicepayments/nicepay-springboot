@@ -19,6 +19,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.util.Pair;
+import org.springframework.test.context.ActiveProfiles;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -29,12 +30,12 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 @SpringBootTest
 @DisplayName("약관조회 시나리오 테스트")
-class TermsQueryRestClientTest extends CardInfTest {
+class TermsQueryOutboundAdapterTest extends CardInfTest {
 
-    private static final Logger log = LoggerFactory.getLogger(TermsQueryRestClientTest.class);
+    private static final Logger log = LoggerFactory.getLogger(TermsQueryOutboundAdapterTest.class);
 
     @Autowired
-    private TermsQueryRestClient termsQueryRestClient;
+    private TermsQueryOutboundAdapter termsQueryRestClient;
 
     private static Stream<Arguments> terms() {
         return Stream.of(

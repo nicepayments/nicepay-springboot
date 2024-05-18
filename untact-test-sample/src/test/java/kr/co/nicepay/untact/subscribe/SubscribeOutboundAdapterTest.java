@@ -1,13 +1,13 @@
 package kr.co.nicepay.untact.subscribe;
 
-import kr.co.nicepay.untact.checkamt.CheckAmountQueryRestClient;
+import kr.co.nicepay.untact.checkamt.CheckAmountOutboundAdapter;
 import kr.co.nicepay.untact.checkamt.dto.CheckAmountRequest;
 import kr.co.nicepay.untact.checkamt.dto.CheckAmountResponse;
 import kr.co.nicepay.untact.common.domain.Id;
 import kr.co.nicepay.untact.common.utils.SignDataEncrypt;
 import kr.co.nicepay.untact.core.CardInfTest;
-import kr.co.nicepay.untact.payments.PaymentsCommandRestClient;
-import kr.co.nicepay.untact.payments.PaymentsQueryRestClient;
+import kr.co.nicepay.untact.payments.PaymentsCommandOutboundAdapter;
+import kr.co.nicepay.untact.payments.PaymentsQueryOutboundAdapter;
 import kr.co.nicepay.untact.payments.dto.PaymentsCancelRequest;
 import kr.co.nicepay.untact.payments.dto.PaymentsResponse;
 import kr.co.nicepay.untact.subscribe.dto.*;
@@ -31,20 +31,20 @@ import static org.junit.jupiter.api.TestInstance.Lifecycle.PER_CLASS;
 @DisplayName("정기결제 시나리오 테스트")
 @TestInstance(PER_CLASS)
 @TestMethodOrder(value = MethodOrderer.OrderAnnotation.class)
-class SubscribeCommandClientTest extends CardInfTest {
-    private static final Logger log = LoggerFactory.getLogger(SubscribeCommandClientTest.class);
+class SubscribeOutboundAdapterTest extends CardInfTest {
+    private static final Logger log = LoggerFactory.getLogger(SubscribeOutboundAdapterTest.class);
     private static final BigDecimal amount = BigDecimal.valueOf(1004);
     private static Id<String> bid;
     private static Id<String> tid;
     private static Id<String> retrieveOrderId;
     @Autowired
-    private SubscribeCommandClient subscribeCommandClient;
+    private SubscribeOutboundAdapter subscribeOutboundAdapter;
     @Autowired
-    private CheckAmountQueryRestClient checkAmountQueryRestClient;
+    private CheckAmountOutboundAdapter checkAmountQueryRestClient;
     @Autowired
-    private PaymentsQueryRestClient paymentsQueryRestClient;
+    private PaymentsQueryOutboundAdapter paymentsQueryOutboundAdapter;
     @Autowired
-    private PaymentsCommandRestClient paymentsCommandRestClient;
+    private PaymentsCommandOutboundAdapter paymentsCommandOutboundAdapter;
 
     @Order(1)
     @DisplayName("정기결제 빌키발급 테스트")
@@ -64,7 +64,7 @@ class SubscribeCommandClientTest extends CardInfTest {
                         .build();
 
         // when
-        SubscribeCreateResponse issueResponse = subscribeCommandClient.issue(subscribeCreateRequest);
+        SubscribeCreateResponse issueResponse = subscribeOutboundAdapter.issue(subscribeCreateRequest);
 
         // then
         log.info("{}", issueResponse);
@@ -90,7 +90,7 @@ class SubscribeCommandClientTest extends CardInfTest {
                 .build();
 
         // when
-        PaymentsResponse paymentsResponse = subscribeCommandClient.payments(bid, subscribePaymentsRequest);
+        PaymentsResponse paymentsResponse = subscribeOutboundAdapter.payments(bid, subscribePaymentsRequest);
 
         // then
         log.info("{}", paymentsResponse);
@@ -137,7 +137,7 @@ class SubscribeCommandClientTest extends CardInfTest {
         // given
 
         // when
-        Pair<Integer, PaymentsResponse> retrieveTransactionOrderId = paymentsQueryRestClient.retrieveOrderId(retrieveOrderId);
+        Pair<Integer, PaymentsResponse> retrieveTransactionOrderId = paymentsQueryOutboundAdapter.retrieveOrderId(retrieveOrderId);
 
         // then
         log.info("{}", retrieveTransactionOrderId);
@@ -162,7 +162,7 @@ class SubscribeCommandClientTest extends CardInfTest {
                 .build();
 
         // when
-        Pair<Integer, PaymentsResponse> cancelledResposne = paymentsCommandRestClient.cancel(tid, paymentsCancelRequest);
+        Pair<Integer, PaymentsResponse> cancelledResposne = paymentsCommandOutboundAdapter.cancel(tid, paymentsCancelRequest);
 
         // then
         log.info("{}", cancelledResposne);
@@ -186,7 +186,7 @@ class SubscribeCommandClientTest extends CardInfTest {
                 .returnCharSet(StandardCharsets.UTF_8.name())
                 .build();
         // when
-        SubscribeExpireResponse expireResponse = subscribeCommandClient.expire(bid, subscribeExpireRequest);
+        SubscribeExpireResponse expireResponse = subscribeOutboundAdapter.expire(bid, subscribeExpireRequest);
 
         // then
         log.info("{}", expireResponse);
