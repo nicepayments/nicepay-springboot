@@ -22,7 +22,6 @@ public class PaymentsResponse {
     private Id<String> sessionId;
     private Id<String> orderId;
     private Id<String> tid;
-    private Id<String> bid;
     private Id<String> cancelledTid;
     private String ediDate;
     private String signature;

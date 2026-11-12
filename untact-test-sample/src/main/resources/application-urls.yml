@@ -1,10 +1,6 @@
 uris:
   # API Uris
   access_token: /v1/access-token
-  subscribes:
-    issue: /v1/subscribe/regist
-    payments: /v1/subscribe/{bid}/payments
-    expire: /v1/subscribe/{bid}/expire
   payments:
     retrieve_tid: /v1/payments/{tid}
     retrieve_order_id: /v1/payments/find/{orderId}
